@@ -1,4 +1,8 @@
 namespace :unicorn do
+  def send_signal(sig)
+    execute :kill, "-#{sig}", "`cat #{fetch(:unicorn_pid_path)}`"
+  end
+
   desc "Make sure eveything is present"
   task :check do
     warn 'unicorn_pid_path is not set, please make sure to add it to your configuration' unless any?(:unicorn_pid_path)
@@ -16,12 +20,12 @@ namespace :unicorn do
 
   desc "Try to start a fresh unicorn server, and if successfull kill the old one"
   task :restart do
-    execute :kill, '-USR2', "`cat #{fetch(:unicorn_pid_path)}`"
+    send_signal('USR2')
   end
 
   desc "Stop gracefully the unicorn server"
   task :stop do
-    execute :kill, '-USR2', "`cat #{fetch(:unicorn_pid_path)}`"
+    send_signal('QUIT')
   end
 end
 
