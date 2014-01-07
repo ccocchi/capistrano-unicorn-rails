@@ -16,8 +16,8 @@ set :unicorn_pid_path, ->{ File.join(current_path, 'tmp', 'pids', 'unicorn.pid')
 set :unicorn_config_path, ->{ File.join(current_path, 'config', 'unicorn.rb') }
 ```
 
-The task will use the `unicorn_rails` binary to avoid unnecessary middleware added by
-the `unicorn` binary (Rails already take care of that)
+The task will use the `unicorn_rails` binary to avoid unnecessary middlewares added by
+the `unicorn` binary (Rails already takes care of that)
 
 ## Installation
 
@@ -29,7 +29,7 @@ Add this line to your application's Gemfile:
 
 Require `capistrano/unicorn` inside your `Capfile` to load all tasks.
 
-By default, no task are automatically added since Capistrano will remove the default `deploy:restart` its version 3.1.
+By default, no task are automatically added since Capistrano will remove the default `deploy:restart` in its version 3.1.
 You'll need to invoke directly the task inside your `config/deploy.rb`
 
 ```ruby
