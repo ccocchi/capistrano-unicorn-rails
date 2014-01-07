@@ -12,19 +12,18 @@ Some unicorn specific options
 
 ```ruby
 set :unicorn_rails_env, ->{ fetch :rails_env, "production" }
-set :unicorn_pid_path, ->{ nil }
-set :unicorn_config_dir,  'config'
-set :unicorn_config_file, 'unicorn.rb'  
+set :unicorn_pid_path, ->{ File.join(current_path, 'tmp', 'pids', 'unicorn.pid') }
+set :unicorn_config_path, ->{ File.join(current_path, 'config', 'unicorn.rb') }
 ```
 
-`unicorn_pid_path` is the only mandatory variable to set, `unicorn:restart` is using it
-to know whether or not unicorn is already running.
+The task will use the `unicorn_rails` binary to avoid unnecessary middleware added by
+the `unicorn` binary (Rails already take care of that)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano3-unicorn'
+    gem 'capistrano-unicorn-rails'
 
 ## Usage
 
@@ -38,7 +37,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     invoke 'unicorn:restart'
-  end 
+  end
 end
 ```
 

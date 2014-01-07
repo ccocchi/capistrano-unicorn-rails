@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'capistrano3-unicorn'
+require 'capistrano-unicorn-rails'
 
 Gem::Specification.new do |spec|
-  spec.name          = "capistrano3-unicorn"
-  spec.version       = Capistrano3Unicorn::VERSION
+  spec.name          = "capistrano-unicorn-rails"
+  spec.version       = CapistranoUnicornRails::VERSION
   spec.authors       = ["ccocchi"]
   spec.email         = ["cocchi.c@gmail.com"]
-  spec.description   = "Simple Unicorn! integration with Capistrano3"
-  spec.summary       = "Basic tasks for starting and stoping Unicorn! servers within capistrano tasks"
-  spec.homepage      = "https://github.com/ccocchi/capistrano3-unicorn"
+  spec.description   = "Simple Unicorn! integration with Capistrano3 for Rails projects"
+  spec.summary       = "Basic tasks for starting and stoping Unicorn! servers via capistrano tasks"
+  spec.homepage      = "https://github.com/ccocchi/capistrano-unicorn-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
