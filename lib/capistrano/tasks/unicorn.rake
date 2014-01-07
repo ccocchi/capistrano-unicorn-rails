@@ -2,8 +2,7 @@ namespace :unicorn do
   def send_signal(sig)
     execute :kill, "-#{sig}", "`cat #{fetch(:unicorn_pid_path)}`"
   end
-
-  desc "Make sure capistrano3-unicorn configuration is valid"
+  
   task :check_configuration do
     on roles(:app) do
       error 'unicorn_pid_path is not set, please make sure to add it to your configuration' if fetch(:unicorn_pid_path).nil?
