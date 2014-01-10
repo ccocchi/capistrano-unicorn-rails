@@ -26,7 +26,7 @@ end
 
 namespace :load do
   task :defaults do
-    set :unicorn_rails_env, ->{ fetch :rails_env, "production" }
+    set :unicorn_rails_env, ->{ fetch(:rails_env, fetch(:stage)) }
     set :unicorn_pid_path, ->{ File.join(current_path, 'tmp', 'pids', 'unicorn.pid') }
     set :unicorn_config_path, ->{ File.join(current_path, 'config', 'unicorn.rb') }
   end
